@@ -1,0 +1,10 @@
+<h1>The List of Tasks</h1>
+<div>
+    <% @tasks.each do |task| %>
+        <%= link_to task do %>
+            <li>
+                <%= task.title %>
+            </li>
+        <% end %>
+    <% end %>
+</div>

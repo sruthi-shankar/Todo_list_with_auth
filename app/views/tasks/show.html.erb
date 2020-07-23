@@ -1,0 +1,30 @@
+<h1><%= @task.title %></h1>
+<p><%= time_ago_in_words(@task.created_at) %></p>
+<strong><%= @task.user.first_name %> <%= @task.user.last_name %></strong>
+<hr />
+<% if can? :crud, @task %>
+    <% if @task.is_complete %>
+        <%= link_to(
+            'Set to Undone',
+            complete_task_path(@task.id)
+        )%>
+    <% else %>
+        <%= link_to(
+            'Set to Done',
+            complete_task_path(@task.id)
+        )%>
+    <% end %>
+    <div>
+        <%= link_to(
+            'Edit',
+            edit_task_path(@task),
+        )%>
+        |
+        <%= link_to(
+            'Delete', 
+            task_path(@task),
+            method: :delete,
+            data: { confirm: 'are you sure?' }
+        )%>
+    </div>
+<% end %>
